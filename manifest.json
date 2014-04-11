@@ -1,0 +1,53 @@
+{
+	"manifest version": 2,
+	"name": "Free Browse",
+	"version": "0.0.1",
+	"author": "Ishaan Taylor",
+
+	"description": "Free Browse is a chrome extension that takes keyboard commands and gestures and maps them to certain browsing functionalities.",
+
+	"background": {
+		"scripts": [
+			"bg.js"
+		]
+	},
+
+	"commands": {
+		"switch_right": {
+			"suggested_key": { "default": "Ctrl+Right" },
+      		"description": "Switch highlighted tab to the right"
+		},
+		"switch_left": {
+			"suggested_key": { "default": "Ctrl+Left" },
+		    "description": "Switch highlighted tab to the left"
+		},
+		"move_tabs_right": {
+			"suggested_key": { "default": "Ctrl+Shift+Right" },
+      		"description": "Move highlighted tabs to the right"
+		},
+		"move_tabs_left": {
+			"suggested_key": { "default": "Ctrl+Shift+Left" },
+      		"description": "Move highlighted tabs to the left"
+		},
+		"highlight_right": {
+			"suggested_key": { "default": "Alt+Shift+Left" },
+      		"description": "Increase range of highlighted tabs to the right"
+		},
+		"highlight_left": {
+			"suggested_key": { "default": "Alt+Shift+Left" },
+      		"description": "Increase range of highlighted tabs to the left"
+		},
+		"close_tab": {
+			"suggested_key": { "default": "Ctrl+Down" },
+      		"description": "Close highlighted group of tabs"
+		},
+	},
+
+	"permissions": [
+		"tabs",
+		"windows"
+	],
+
+	"options page": ""
+
+}
