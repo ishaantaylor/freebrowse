@@ -19,7 +19,7 @@ var update_windows = function(number_of_tabs_per_window, index_of_modified_windo
 
 // functions
 /* MOVE, SWTICH, HIGHLIGHT */
-function switch(r_o_l) {
+function swah(r_o_l) {
 	var window_size = chrome.windows.getCurrent( function(window) {
 		return window.tabs.length;
 	});
@@ -35,22 +35,55 @@ function switch(r_o_l) {
 			else return tab.index - 1;
 		});		
 	}
-	var next_tab = qwery({
+	
+	var next_tab = chrome.tabs.query({
 		currentWindow:true,
 		index:next_index
+	}, function(query_result){
+		return query_result;
 	});
-	next_tab.active = true;
+	
+	chrome.tabs.update(next_tab.tabid, {active:true});
 }
 
 chrome.commands.onCommand.addListener( function(command) {
   console.log('onCommand event received for message: ', command);
   switch(command) {
   	case "switch_right":
-  		switch("right");
+  		swah("right");
   		break;
   	case "switch_left":
-  		switch("left");
+  		swah("left");
   		break;
+
+  	case "close_tab":
+
+  		break;
+
+  }
+});
+
+
+/** Disappointment 
+/*
+		"move_tabs_right": {
+			"suggested_key": { "default": "Ctrl+Shift+Right" },
+      		"description": "Move highlighted tabs to the right"
+		},
+		"move_tabs_left": {
+			"suggested_key": { "default": "Ctrl+Shift+Left" },
+      		"description": "Move highlighted tabs to the left"
+		},
+		"highlight_right": {
+			"suggested_key": { "default": "Alt+Shift+Left" },
+      		"description": "Increase range of highlighted tabs to the right"
+		},
+		"highlight_left": {
+			"suggested_key": { "default": "Alt+Shift+Left" },
+      		"description": "Increase range of highlighted tabs to the left"
+		},
+*/
+/*
   	case "move_tabs_right":
 
 		break;
@@ -63,9 +96,4 @@ chrome.commands.onCommand.addListener( function(command) {
   	case "highlight_left":
 
   		break;
-  	case "close_tab":
-
-  		break;
-
-  }
-});
+*/
