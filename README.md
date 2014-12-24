@@ -12,5 +12,5 @@ So far, these are the functionalities:
 
 Known Issues:
 -------------------------------------------------
- 1. Even when deactivated, the specified shortcuts are still occupied by the extensions shortcuts.
+ 1. Even when deactivated, the specified native shortcuts are still occupied by the extensions shortcuts.
 
