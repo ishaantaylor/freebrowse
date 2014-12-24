@@ -73,8 +73,9 @@ function close_tab() {
 			highlighted:true
 		},
 		function (tabs) {
-			
+
 		}
+	)
 }
 
 chrome.commands.onCommand.addListener( function(command) {
