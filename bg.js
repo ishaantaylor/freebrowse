@@ -56,28 +56,42 @@ function tab_switch(direction) {
 
 
 function close_tab() {
-	chrome.tabs.query(
+	query(
 		{
 			highlighted:true
 		},
 		function (highlighted_tabs) {
-			chrome.tabs.remove(highlighted_tabs[0].id);		// TODO: implement for all tabs (create array of tab ids, or just pass array of tabs)
+			var tabs_to_remove = [];
+			for (int i = 0; i < highlighted_tabs.length; i++) {
+				tabs_to_remove.push(highlighted_tabs[i].id);
+			}
+			chrome.tabs.remove(tabs_to_remove);		// TODO: implement for all tabs (create array of tab ids, or just pass array of tabs)
 		}
 	)
 }
 
+
+function toggle_activation() {
+	activated = !activated;
+}
+
+
 chrome.commands.onCommand.addListener( function(command) {
   switch(command) {
   	case "switch_right":
-  		tab_switch(1);
+  		if (activated) tab_switch(1);
   		break;
 
   	case "switch_left":
-  		tab_switch(-1);
+  		if (activated) tab_switch(-1);
   		break;
 
   	case "close_tab":
-  		close_tab();
+  		if (activated) close_tab();
+  		break;
+
+  	case "toggle_activation":
+  		toggle_activation();
   		break;
   }
 });
