@@ -73,7 +73,7 @@ function close_tab() {
 			highlighted:true
 		},
 		function (highlighted_tabs) {
-			chrome.tabs.remove(highlighted_tabs[0].id);
+			chrome.tabs.remove(highlighted_tabs[0].id);		// TODO: implement for all tabs (create array of tab ids, or just pass array of tabs)
 		}
 	)
 }
@@ -91,7 +91,6 @@ chrome.commands.onCommand.addListener( function(command) {
   	case "close_tab":
   		close_tab();
   		break;
-
   }
 });
 
