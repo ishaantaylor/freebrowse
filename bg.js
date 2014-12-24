@@ -19,45 +19,77 @@ var update_windows = function(number_of_tabs_per_window, index_of_modified_windo
 
 // functions
 /* MOVE, SWTICH, HIGHLIGHT */
-function swah(r_o_l) {
-	var window_size = chrome.windows.getCurrent( function(window) {
-		return window.tabs.length;
-	});
+function tab_switch(direction) {
+	var window_size;
+	chrome.tabs.query( 
+		{
+			currentWindow:true
+		},
+		function(all_tabs) {
+			window_size = all_tabs.length;
+			chrome.tabs.query(
+				{
+					highlighted:true
+				},
+				function (tabs) {
+					// initialize indices
+					var index = tabs[0].index;
+					var next_index = index;
+					
+					// initialize bounds
+					var leftbound = 0;
+					var rightbound = window_size-1;
 
-	if (r_o_l == "right") {
-		var next_index = chrome.tabs.getCurrent( function(tab) {
-			if ((tab.index + 1) == window_size)	return 0;
-			else return tab.index + 1;
-		});
-	} else { 	// r_o_l == "left"
-		var next_index = chrome.tabs.getCurrent( function(tab) {
-			if ((tab.index - 1) == 0)	return window_size-1;
-			else return tab.index - 1;
-		});		
-	}
-	
-	var next_tab = chrome.tabs.query({
-		currentWindow:true,
-		index:next_index
-	}, function(query_result){
-		return query_result;
-	});
-	
-	chrome.tabs.update(next_tab.tabid, {active:true});
+					// pick new index
+					if (direction > 0) {			// right
+						if (index + direction > rightbound)	
+							next_index = leftbound;
+						else 
+							next_index = index + direction;
+
+					} else if (direction < 0) {		// left
+						if (index + direction < leftbound)
+							next_index = rightbound;
+						else
+							next_index = index + direction;
+					}
+					
+					// highlight new tab
+					try {
+						chrome.tabs.highlight({tabs:next_index}, function(window) {});
+					} catch (e) {
+						console.log(e);
+					}
+				}
+			);
+		}
+	);
+}
+
+
+function close_tab() {
+	chrome.tabs.query(
+		{
+			highlighted:true
+		},
+		function (tabs) {
+			
+		}
 }
 
 chrome.commands.onCommand.addListener( function(command) {
   console.log('onCommand event received for message: ', command);
   switch(command) {
   	case "switch_right":
-  		swah("right");
+  		tab_switch(1);
   		break;
+
   	case "switch_left":
-  		swah("left");
+  		tab_switch(-1);
   		break;
 
   	case "close_tab":
-
+  		close_tab();
   		break;
 
   }
