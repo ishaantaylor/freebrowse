@@ -62,7 +62,7 @@ function close_tab() {
 		},
 		function (highlighted_tabs) {
 			var tabs_to_remove = [];
-			for (int i = 0; i < highlighted_tabs.length; i++) {
+			for (var i = 0; i < highlighted_tabs.length; i++) {
 				tabs_to_remove.push(highlighted_tabs[i].id);
 			}
 			chrome.tabs.remove(tabs_to_remove);		// TODO: implement for all tabs (create array of tab ids, or just pass array of tabs)
