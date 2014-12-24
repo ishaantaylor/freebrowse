@@ -25,7 +25,7 @@ function tab_switch(direction) {
 		{
 			currentWindow:true
 		},
-		function(all_tabs) {
+		function (all_tabs) {
 			window_size = all_tabs.length;
 			chrome.tabs.query(
 				{
@@ -72,14 +72,13 @@ function close_tab() {
 		{
 			highlighted:true
 		},
-		function (tabs) {
-
+		function (highlighted_tabs) {
+			chrome.tabs.remove(highlighted_tabs[0].id);
 		}
 	)
 }
 
 chrome.commands.onCommand.addListener( function(command) {
-  console.log('onCommand event received for message: ', command);
   switch(command) {
   	case "switch_right":
   		tab_switch(1);
