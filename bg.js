@@ -1,33 +1,21 @@
-//bg.js
+var activated = true;
 
-// implement and translate the commands 
-
-//switch highlighted tabs commands (on branch switch)
-
-//move highlighted group right or left commands (on branch move)
-
-
-/* query helper function- reduce clutter */
-var qwery = function(query_info, callback) {
+/* query helper function */
+var query = function(query_info, callback) {
 	chrome.tabs.query(query_info, callback);
 };
 
-var number_of_tabs_per_window = [];
-var update_windows = function(number_of_tabs_per_window, index_of_modified_window) {
 
-}; // TODO: implement / decide if this is neccesary 
-
-// functions
-/* MOVE, SWTICH, HIGHLIGHT */
+// main functions
 function tab_switch(direction) {
 	var window_size;
-	chrome.tabs.query( 
+	query( 
 		{
 			currentWindow:true
 		},
 		function (all_tabs) {
 			window_size = all_tabs.length;
-			chrome.tabs.query(
+			query(
 				{
 					highlighted:true
 				},
