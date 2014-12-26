@@ -17,7 +17,8 @@ function tab_switch(direction) {
 			window_size = all_tabs.length;
 			query(
 				{
-					highlighted:true
+					highlighted:true,
+					currentWindow:true
 				},
 				function (tabs) {
 					// initialize indices
