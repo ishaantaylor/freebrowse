@@ -27,11 +27,11 @@
 		    "description": "Switch highlighted tab to the left"
 		},
 		"close_tab": {
-			"suggested_key": { "default": "Ctrl+Up" },
+			"suggested_key": { "default": "Ctrl+Down" },
       		"description": "Close highlighted group of tabs"
 		},
 		"toggle_activation": {
-			"suggested_key": { "default": "Ctrl+Down" },
+			"suggested_key": { "default": "Ctrl+Up" },
 			"description": "Toggles the activation of Free Browse's functionality"
 		}
 	}

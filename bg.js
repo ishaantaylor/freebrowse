@@ -59,6 +59,7 @@ function tab_switch(direction) {
 function close_tab() {
 	query(
 		{
+			currentWindow:true,
 			highlighted:true
 		},
 		function (highlighted_tabs) {
