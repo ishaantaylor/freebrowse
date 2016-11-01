@@ -93,7 +93,7 @@ chrome.commands.onCommand.addListener( function(command) {
   		break;
 
   	case "toggle_activation":
-  		toggle_activation();
+  		// toggle_activation();	
   		break;
   }
 });
