@@ -99,7 +99,7 @@ chrome.commands.onCommand.addListener( function(command) {
 });
 
 
-/** Disappointment 
+/** Chrome only allows 4 mappings
 /*
 		"move_tabs_right": {
 			"suggested_key": { "default": "Ctrl+Shift+Right" },
